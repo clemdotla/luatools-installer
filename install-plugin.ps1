@@ -18,7 +18,7 @@ function Log {
     $Type = $Type.ToUpper()
     switch ($Type) {
         "OK"   { $foreground = "Green" }
-        "INFO" { $foreground = "Blue" }
+        "INFO" { $foreground = "Cyan" }
         "ERR"  { $foreground = "Red" }
         "WARN" { $foreground = "Yellow" }
         "LOG"  { $foreground = "Magenta" }
