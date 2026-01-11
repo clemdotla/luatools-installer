@@ -170,16 +170,18 @@ Log "OK" "$upperName installed"
 
 # Result showing
 Write-Host
-if ($milleniumInstalling) { Log "WARN" "Steam startup will be longer, don't panick and don't touch anything in steam!" }
+if ($milleniumInstalling) { Log "WARN" "Steam startup will be longer, don't panic and don't touch anything in steam!" }
+
+Log "WARN" "Until further updates, please toggle the plugin manually"
+Log "AUX" "'Steam' icon on top left => Millennium => Plugins => $upperName (toggle it) => 'Save Changes'"
 
 # Waiting input (unless -f argument passed)
 if (!($isForced)) {
     Log "OK" "Press any key to restart steam and finish the installation!"
     [void][System.Console]::ReadKey($true)
-} else { Log "OK" "Restarting steam and toggling the plugin on" }
+# } else { Log "OK" "Restarting steam and toggling the plugin on" }
+} else { Log "OK" "Restarting steam" }
 
-Log "WARN" "Until further updates, please toggle the plugin manually"
-Log "AUX" "'Steam' icon on top left => Millennium => Plugins => $upperName (toggle it) => 'Save Changes'"
 
 # Toggle the plugin on (restarts steam)
 # Start-Process "steam://millennium/settings/plugins/enable/$name"
