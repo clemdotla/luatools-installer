@@ -126,7 +126,7 @@ foreach ($file in @("millennium.dll", "python311.dll")) {
 
         Log "INFO" "Installing millenium"
 
-        Invoke-Expression "& { $(Invoke-RestMethod 'https://raw.githubusercontent.com/clemichou1/millennium-installer-ps1/refs/heads/main/millennium.ps1') } -NoLog -DontStart -SteamPath '$steam'"
+        Invoke-Expression "& { $(Invoke-RestMethod 'https://raw.githubusercontent.com/clemdotla/millennium-installer-ps1/refs/heads/main/millennium.ps1') } -NoLog -DontStart -SteamPath '$steam'"
 
         Log "OK" "Millenium done installing"
         $milleniumInstalling = $true
