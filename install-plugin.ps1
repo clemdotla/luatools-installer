@@ -32,6 +32,10 @@ function Log {
 
     Write-Host [$Type] $Message -ForegroundColor $foreground -NoNewline:$NoNewline
 }
+Log "WARN" "Hey! Just letting you know that script sucks.."
+Log "WARN" "But i'm working on a new version combining all scripts of the server"
+Log "AUX" "Will include language support on THIS script too, luv y'all brazilians"
+Write-Host
 
 # To hide IEX blue box thing
 $ProgressPreference = 'SilentlyContinue'
