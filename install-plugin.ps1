@@ -41,6 +41,8 @@ Write-Host
 $ProgressPreference = 'SilentlyContinue'
 
 
+Get-Process steam -ErrorAction SilentlyContinue | Stop-Process -Force
+
 #### Requirements part ####
 
 # Steamtools check
