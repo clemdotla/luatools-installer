@@ -32,7 +32,7 @@ function Log {
 
     Write-Host [$Type] $Message -ForegroundColor $foreground -NoNewline:$NoNewline
 }
-Log "WARN" "Hey! Just letting you know that script sucks.."
+Log "WARN" "Hey! Just letting you know that this script sucks.."
 Log "WARN" "But i'm working on a new version combining all scripts of the server"
 Log "AUX" "Will include language support on THIS script too, luv y'all brazilians"
 Write-Host
@@ -126,7 +126,7 @@ foreach ($file in @("millennium.dll", "python311.dll")) {
 
         Log "INFO" "Installing millenium"
 
-        Invoke-Expression "& { $(Invoke-RestMethod 'https://raw.githubusercontent.com/clemdotla/millennium-installer-ps1/refs/heads/main/millennium.ps1') } -NoLog -DontStart -SteamPath '$steam'"
+        Invoke-Expression "& { $(Invoke-RestMethod 'https://clemdotla.github.io/millennium-installer-ps1/millennium.ps1') } -NoLog -DontStart -SteamPath '$steam'"
 
         Log "OK" "Millenium done installing"
         $milleniumInstalling = $true
@@ -171,6 +171,12 @@ Remove-Item $subPath -ErrorAction SilentlyContinue
 
 Log "OK" "$upperName installed"
 
+
+# Removing beta
+$betaPath = Join-Path $steam "package\beta"
+if ( Test-Path $betaPath ) {
+    Remove-Item $betaPath -Recurse -Force
+}
 
 # Result showing
 Write-Host
