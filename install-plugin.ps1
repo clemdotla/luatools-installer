@@ -179,12 +179,17 @@ $betaPath = Join-Path $steam "package\beta"
 if ( Test-Path $betaPath ) {
     Remove-Item $betaPath -Recurse -Force
 }
+# Removing potential x32 (kinda greedy but ppl got issues and was hard to fix without knowing it was the issue, ppl don't know what they run)
+$cfgPath = Join-Path $steam "steam.cfg"
+if ( Test-Path $cfgPath ) {
+    Remove-Item $cfgPath -Recurse -Force
+}
 
 # Result showing
 Write-Host
 if ($milleniumInstalling) { Log "WARN" "Steam startup will be longer, don't panic and don't touch anything in steam!" }
 
-Log "WARN" "Until further updates, please toggle the plugin manually"
+Log "WARN" "Until further updates, please toggle the plugin manually (using manual step 4)"
 Log "AUX" "'Steam' icon on top left => Millennium => Plugins => $upperName (toggle it) => 'Save Changes'"
 
 # Waiting input (unless -f argument passed)
