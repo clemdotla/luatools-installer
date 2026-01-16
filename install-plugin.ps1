@@ -184,6 +184,11 @@ $cfgPath = Join-Path $steam "steam.cfg"
 if ( Test-Path $cfgPath ) {
     Remove-Item $cfgPath -Recurse -Force
 }
+Remove-ItemProperty -Path "HKCU:\Software\Valve\Steam" -Name "SteamCmdForceX86" -ErrorAction SilentlyContinue
+Remove-ItemProperty -Path "HKLM:\SOFTWARE\Valve\Steam" -Name "SteamCmdForceX86" -ErrorAction SilentlyContinue
+Remove-ItemProperty -Path "HKLM:\SOFTWARE\WOW6432Node\Valve\Steam" -Name "SteamCmdForceX86" -ErrorAction SilentlyContinue
+
+
 
 # Result showing
 Write-Host
