@@ -1,0 +1,44 @@
+{
+    "welcome": "Welcome to v2 !",
+    
+    "found-steam": "Found Steam installation:",
+    "steam-not-found": "Steam not found, make sure to have it installed.",
+    "restart": "Restarting Steam for changes to take effect",
+
+    "select-option": "Select an option",
+    "make-choice": "Enter your choice: ",
+    "failed-option": "Failed to run the option",
+
+    "yes": "Yes",
+    "no": "No",
+
+    "manage-plugin": "Manage plugin (main purpose)",
+    "manage-steamtools": "Manage steamtools",
+    "manage-millennium": "Manage millennium",
+    "fixes": "Run generic fixes",
+    "credits": "See credits",
+    "information": "See information",
+    "exit": "Exit",
+
+    "return-menu": "Back to main menu",
+
+
+    "install": "Install",
+    "uninstall": "Uninstall",
+
+    "installation-failed": "installation failed",
+    "uninstallation-failed": "uninstallation failed",
+    
+    "plugin-installed": "Plugin installed",
+    "plugin-uninstalled": "Plugin uninstalled",
+    "st-installed": "Steamtools installed",
+    "st-uninstalled": "Steamtools uninstalled",
+    "millennium-installed": "Millennium installed",
+    "millennium-uninstalled": "Millennium uninstalled",
+    
+    
+    "st-wipe": "Fully delete steamtools?",
+    "st-wipe2": "You'll need to re-add games manually if reinstalled",
+    "uninstall-millennium": "Uninstall millennium ?",
+    "uninstall-steamtools": "Uninstall steamtools ?"
+}
