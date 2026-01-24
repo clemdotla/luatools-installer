@@ -189,23 +189,58 @@ Remove-ItemProperty -Path "HKLM:\SOFTWARE\Valve\Steam" -Name "SteamCmdForceX86" 
 Remove-ItemProperty -Path "HKLM:\SOFTWARE\WOW6432Node\Valve\Steam" -Name "SteamCmdForceX86" -ErrorAction SilentlyContinue
 
 
+# Toggling the plugin on (+turning off updateChecking to try fixing a bug)
+$configPath = Join-Path $steam "ext/config.json"
+if ( Test-Path $configPath ) {
+    $config = Get-Content $configPath -Raw | ConvertFrom-Json
+    # Turning of updates
+    $script:updateStatus = $config.general.checkForMillenniumUpdates
+    $config.general.checkForMillenniumUpdates = $false
+    $config | ConvertTo-Json | Set-Content $configPath -Encoding UTF8
+
+
+    if (!($config.plugins.enabledPlugins -contains $name)) {
+        $config.plugins.enabledPlugins += $name
+        $config | ConvertTo-Json | Set-Content $configPath -Encoding UTF8
+        Log "OK" "Plugin enabled"
+    } else {
+        Log "INFO" "Plugin already enabled"
+    }
+} else {
+    $script:updateStatus = $true
+    $content = @{
+        "general" = @{
+            "checkForMillenniumUpdates" = $false
+        }
+        "plugins" = @{ 
+            "enabledPlugins" = @($name) 
+        } 
+    }
+    $content | ConvertTo-Json | Set-Content $configPath -Encoding UTF8
+}
+
 
 # Result showing
 Write-Host
 if ($milleniumInstalling) { Log "WARN" "Steam startup will be longer, don't panic and don't touch anything in steam!" }
 
-Log "WARN" "Until further updates, please toggle the plugin manually (using manual step 4)"
-Log "AUX" "'Steam' icon on top left => Millennium => Plugins => $upperName (toggle it) => 'Save Changes'"
-
 # Waiting input (unless -f argument passed)
 if (!($isForced)) {
     Log "OK" "Press any key to restart steam and finish the installation!"
     [void][System.Console]::ReadKey($true)
-# } else { Log "OK" "Restarting steam and toggling the plugin on" }
 } else { Log "OK" "Restarting steam" }
 
-
-# Toggle the plugin on (restarts steam)
-# Start-Process "steam://millennium/settings/plugins/enable/$name"
+# Start with the "-clearbeta" argument
 $exe = Join-Path $steam "steam.exe"
-Start-Process $exe
+Start-Process $exe -ArgumentList "-clearbeta"
+
+Log "INFO" "Starting steam"
+
+# Hard coded yeah? so what uh?
+Start-Sleep -Seconds 20
+# Turning back on updates
+if ($script:updateStatus) {
+    $config = Get-Content $configPath -Raw | ConvertFrom-Json
+    $config.general.checkForMillenniumUpdates = $true
+    $config | ConvertTo-Json | Set-Content $configPath -Encoding UTF8
+}
